@@ -1,0 +1,52 @@
+/* Objetivo 1 */
+SELECT * FROM VETERINARIO vet
+WHERE vet.ESPECIALIDADE = 'Dermatologista'
+
+/* Objetivo 2 */
+SELECT * FROM PACIENTE p 
+WHERE p.IDADE BETWEEN 2 AND 5
+
+/* Objetivo 3 */
+SELECT  * FROM AGENDAMENTO a 
+WHERE a.DATA_HORA BETWEEN '2024-03-01 00:00:00.000' AND '2024-03-31 00:00:00.000'
+
+/* Objetivo 4 */
+SELECT * FROM MEDICAMENTOS med 
+WHERE med.PRECO > 25
+
+/* Objetivo 5 */
+/* Teve que relacionar a tabela "receita" com a "agendamento" e então "veterinario" */
+SELECT * FROM RECEITA rec
+WHERE rec.DATA_EMISSAO < '2024-06-01'
+AND rec.ID_AGENDAMENTO = (SELECT agend.ID_AGENDAMENTO FROM AGENDAMENTO agend WHERE agend.id_veterinario = (SELECT vet.id_veterinario FROM VETERINARIO vet WHERE vet.nome = 'Dr. Ana Souza'));
+
+/* Objetivo 6 */
+SELECT * FROM PACIENTE p
+WHERE p.ID_TUTOR = (SELECT t.ID_TUTOR FROM TUTOR t WHERE t.nome = 'Maria Silva')
+
+/* Objetivo 7 */
+SELECT * FROM ITENSRECEITA i
+WHERE i.ID_MEDICAMENTO = (SELECT m.ID_MEDICAMENTO FROM MEDICAMENTOS m WHERE m.NOME = 'Anti-inflamatório Y')
+
+/* O objetivo 8 foi pulado porque usa função */
+
+/* Objetivo 9 */
+SELECT * FROM AGENDAMENTO a
+WHERE a.ID_VETERINARIO = (SELECT v.ID_VETERINARIO FROM VETERINARIO v WHERE v.NOME = 'Dr. Pedro Lima') AND
+a.MOTIVO = 'Exame de sangue'
+
+/* Objetivo 10 */
+/* Não consegui usando a palavra "NULL", tive que usar "diferente de uma string vazia" */
+SELECT * FROM MEDICAMENTOS m 
+WHERE m.DESCRICAO <> '' AND
+m.PRECO < 50
+
+/* Objetivo 11 */
+SELECT * FROM PACIENTE p 
+WHERE p.PESO BETWEEN 3 AND 10
+
+/* Objetivo 12 */
+SELECT * FROM PACIENTE p 
+WHERE p.PESO > 5 AND p.ID_TUTOR = (SELECT t.ID_TUTOR FROM TUTOR t WHERE t.NOME = 'Carlos Lima')
+
+/* Objetivo 13 */
