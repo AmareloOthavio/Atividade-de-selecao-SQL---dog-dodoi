@@ -36,9 +36,8 @@ WHERE a.ID_VETERINARIO = (SELECT v.ID_VETERINARIO FROM VETERINARIO v WHERE v.NOM
 a.MOTIVO = 'Exame de sangue'
 
 /* Objetivo 10 */
-/* Não consegui usando a palavra "NULL", tive que usar "diferente de uma string vazia" */
 SELECT * FROM MEDICAMENTOS m 
-WHERE m.DESCRICAO <> '' AND
+WHERE m.DESCRICAO IS NOT NULL AND 
 m.PRECO < 50
 
 /* Objetivo 11 */
